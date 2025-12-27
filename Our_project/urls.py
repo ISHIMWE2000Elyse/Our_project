@@ -40,25 +40,53 @@ Including another URLconf
 #         path('__debug__/', include(debug_toolbar.urls)),
 #     ]
 
+# from django.contrib import admin
+# from django.urls import path, include
+# from django.conf import settings
+# from django.shortcuts import redirect
+# from django.contrib.auth import views as auth_views
+
+# urlpatterns = [
+#     path('', lambda request: redirect('login')),
+#     path('admin/', admin.site.urls),
+
+#     # Auth
+#     path('login/', auth_views.LoginView.as_view(
+#         template_name='auth/login.html'
+#     ), name='login'),
+#     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+
+#     # Apps
+#     path('dashboard/', include('dashboard.urls')),
+#     path('playground/', include('playground.urls')),
+#     path('store/', include('Store.urls')),
+# ]
+
+# if settings.DEBUG:
+#     import debug_toolbar
+#     urlpatterns += [
+#         path('__debug__/', include(debug_toolbar.urls)),
+#     ]
+
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
-from django.shortcuts import redirect
 from django.contrib.auth import views as auth_views
+from django.shortcuts import redirect
+from django.conf import settings
 
 urlpatterns = [
-    path('', lambda request: redirect('login')),
+    path('', lambda request: redirect('login')),   # ROOT → login
     path('admin/', admin.site.urls),
 
     # Auth
-    path('login/', auth_views.LoginView.as_view(
-        template_name='auth/login.html'
-    ), name='login'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     # Apps
     path('dashboard/', include('dashboard.urls')),
+    path('', include('Store.urls')),
     path('playground/', include('playground.urls')),
+
 ]
 
 if settings.DEBUG:

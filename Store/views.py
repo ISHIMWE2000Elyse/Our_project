@@ -1,3 +1,19 @@
-from django.shortcuts import render
+# from django.contrib.auth.decorators import login_required
+# from django.shortcuts import render
+# from .models import Product
 
-# Create your views here.
+# @login_required
+# def product_list(request):
+#     products = Product.objects.select_related('collection').all()
+#     return render(request, 'store/product_list.html', {
+#         'products': products
+#     })
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from .models import Product
+
+@login_required
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'store/product_list.html', {'products': products})

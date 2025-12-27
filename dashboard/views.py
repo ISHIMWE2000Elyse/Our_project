@@ -12,9 +12,40 @@
 #     return render(request, 'dashboard/home.html', {'apps': apps})
 
 
+# from django.contrib.auth.decorators import login_required
+# from django.shortcuts import render
+
+# @login_required
+# def dashboard_home(request):
+#     return render(request, 'dashboard/home.html')
+
+# from django.contrib.auth.decorators import login_required
+# from django.shortcuts import render
+
+# @login_required
+# def dashboard_home(request):
+#     user = request.user
+
+#     if user.is_superuser:
+#         role = 'Admin'
+#     elif user.is_staff:
+#         role = 'Staff'
+#     else:
+#         role = 'User'
+
+#     return render(request, 'dashboard/home.html', {
+#         'role': role
+#     })
+
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 
 @login_required
 def dashboard_home(request):
     return render(request, 'dashboard/home.html')
+
+
+@staff_member_required
+def reports_view(request):
+    return render(request, 'dashboard/reports.html')
