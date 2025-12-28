@@ -3,7 +3,135 @@
 {% block title %}Reports{% endblock %}
 
 {% block content %}
-<h3>Reports</h3>
+<div class="container-fluid">
 
-<p>This page is only visible to staff and admins.</p>
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-0">Reports & Analytics</h2>
+            <small class="text-muted">
+                System-generated reports for production and quality monitoring
+            </small>
+        </div>
+        <span class="badge bg-secondary">Staff / Admin Access</span>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-3">
+            <div class="report-card">
+                <h6>Total Products</h6>
+                <h3>128</h3>
+                <p>Registered items</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="report-card">
+                <h6>Total Orders</h6>
+                <h3>56</h3>
+                <p>Production orders</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="report-card">
+                <h6>Quality Rate</h6>
+                <h3>92%</h3>
+                <p>Approved grading</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="report-card">
+                <h6>Reports Generated</h6>
+                <h3>14</h3>
+                <p>This month</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Report Actions -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <h5 class="fw-semibold mb-3">Available Reports</h5>
+
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Report Name</th>
+                            <th>Description</th>
+                            <th>Last Generated</th>
+                            <th class="text-end">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Production Summary</td>
+                            <td>Overview of production output</td>
+                            <td>Today</td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-primary">
+                                    <i class="bi bi-file-earmark-text"></i> Generate
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Quality Grading Report</td>
+                            <td>Inspection and grading results</td>
+                            <td>Yesterday</td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-success">
+                                    <i class="bi bi-download"></i> Download
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Order Performance</td>
+                            <td>Order status and timelines</td>
+                            <td>2 days ago</td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-dark">
+                                    <i class="bi bi-eye"></i> View
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<style>
+.report-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+.report-card:hover {
+    transform: translateY(-5px);
+}
+.report-card h6 {
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #6c757d;
+}
+.report-card h3 {
+    font-weight: 700;
+}
+.report-card p {
+    font-size: 14px;
+    color: #6c757d;
+}
+</style>
 {% endblock %}

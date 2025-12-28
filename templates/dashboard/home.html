@@ -2,47 +2,162 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<h3 class="mb-4">Dashboard</h3>
+<div class="container-fluid">
 
-<div class="row g-3">
-    <div class="col-md-3">
-        <div class="card text-bg-primary">
-            <div class="card-body">
-                <h5 class="card-title">Products</h5>
-                <p class="card-text">Manage products</p>
-                <a href="#" class="btn btn-light btn-sm">View</a>
-            </div>
-        </div>
+    <!-- Header -->
+    <div class="mb-4">
+        <h2 class="fw-bold">Dashboard</h2>
+        <p class="text-muted mb-0">
+            Real-time overview of production performance
+        </p>
     </div>
 
-    <div class="col-md-3">
-        <div class="card text-bg-success">
-            <div class="card-body">
-                <h5 class="card-title">Orders</h5>
-                <p class="card-text">Production orders</p>
-                <a href="#" class="btn btn-light btn-sm">View</a>
+    <!-- KPI CARDS -->
+    <div class="row g-4 mb-4">
+
+        <!-- Products -->
+        <div class="col-xl-3 col-md-6">
+            <div class="kpi-card gradient-primary">
+                <div>
+                    <h6>Products</h6>
+                    <h2>128</h2>
+                    <span class="badge bg-light text-primary">Active</span>
+                </div>
+                <i class="bi bi-box-seam"></i>
             </div>
         </div>
+
+        <!-- Orders -->
+        <div class="col-xl-3 col-md-6">
+            <div class="kpi-card gradient-success">
+                <div>
+                    <h6>Orders</h6>
+                    <h2>56</h2>
+                    <span class="badge bg-light text-success">In Production</span>
+                </div>
+                <i class="bi bi-clipboard-data"></i>
+            </div>
+        </div>
+
+        <!-- Grading -->
+        <div class="col-xl-3 col-md-6">
+            <div class="kpi-card gradient-warning">
+                <div>
+                    <h6>Grading</h6>
+                    <h2>92%</h2>
+                    <span class="badge bg-light text-warning">Quality Rate</span>
+                </div>
+                <i class="bi bi-award"></i>
+            </div>
+        </div>
+
+        <!-- Reports -->
+        <div class="col-xl-3 col-md-6">
+            <div class="kpi-card gradient-dark">
+                <div>
+                    <h6>Reports</h6>
+                    <h2>14</h2>
+                    <span class="badge bg-light text-dark">Generated</span>
+                </div>
+                <i class="bi bi-bar-chart"></i>
+            </div>
+        </div>
+
     </div>
 
-    <div class="col-md-3">
-        <div class="card text-bg-warning">
-            <div class="card-body">
-                <h5 class="card-title">Grading</h5>
-                <p class="card-text">Quality grading</p>
-                <a href="#" class="btn btn-light btn-sm">View</a>
+    <!-- ACTION CARDS -->
+    <div class="row g-4">
+
+        <div class="col-md-6 col-xl-3">
+            <div class="action-card">
+                <h5>Product Management</h5>
+                <p>Manage and update product data</p>
+                <a href="#" class="btn btn-primary btn-sm">Open Module</a>
             </div>
         </div>
+
+        <div class="col-md-6 col-xl-3">
+            <div class="action-card">
+                <h5>Production Orders</h5>
+                <p>Track active manufacturing orders</p>
+                <a href="#" class="btn btn-success btn-sm">Open Module</a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+            <div class="action-card">
+                <h5>Quality Grading</h5>
+                <p>Monitor grading and inspections</p>
+                <a href="#" class="btn btn-warning btn-sm text-white">Open Module</a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+            <div class="action-card">
+                <h5>Reports & Analytics</h5>
+                <p>Visual insights and summaries</p>
+                <a href="#" class="btn btn-dark btn-sm">Open Module</a>
+            </div>
+        </div>
+
     </div>
 
-    <div class="col-md-3">
-        <div class="card text-bg-dark">
-            <div class="card-body">
-                <h5 class="card-title">Reports</h5>
-                <p class="card-text">View reports</p>
-                <a href="#" class="btn btn-light btn-sm">View</a>
-            </div>
-        </div>
-    </div>
 </div>
+
+<style>
+/* KPI CARDS */
+.kpi-card {
+    color: #fff;
+    border-radius: 16px;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+.kpi-card:hover {
+    transform: translateY(-6px);
+}
+.kpi-card h2 {
+    font-weight: 700;
+}
+.kpi-card i {
+    font-size: 42px;
+    opacity: 0.85;
+}
+
+/* GRADIENTS */
+.gradient-primary {
+    background: linear-gradient(135deg, #0d6efd, #4dabf7);
+}
+.gradient-success {
+    background: linear-gradient(135deg, #198754, #51cf66);
+}
+.gradient-warning {
+    background: linear-gradient(135deg, #ffc107, #ffd43b);
+}
+.gradient-dark {
+    background: linear-gradient(135deg, #212529, #495057);
+}
+
+/* ACTION CARDS */
+.action-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+.action-card:hover {
+    transform: translateY(-5px);
+}
+.action-card h5 {
+    font-weight: 600;
+}
+.action-card p {
+    color: #6c757d;
+    font-size: 14px;
+}
+</style>
 {% endblock %}
