@@ -22,7 +22,7 @@
         <div class="col-md-3">
             <div class="report-card">
                 <h6>Total Products</h6>
-                <h3>128</h3>
+                <h3>{{ products_count }}</h3>
                 <p>Registered items</p>
             </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="col-md-3">
             <div class="report-card">
                 <h6>Total Orders</h6>
-                <h3>56</h3>
+                <h3>{{ orders_count }}</h3>
                 <p>Production orders</p>
             </div>
         </div>
@@ -38,7 +38,7 @@
         <div class="col-md-3">
             <div class="report-card">
                 <h6>Quality Rate</h6>
-                <h3>92%</h3>
+                <h3>{{ grading_rate }}%</h3>
                 <p>Approved grading</p>
             </div>
         </div>
@@ -46,7 +46,7 @@
         <div class="col-md-3">
             <div class="report-card">
                 <h6>Reports Generated</h6>
-                <h3>14</h3>
+                <h3>{{ reports_generated }}</h3>
                 <p>This month</p>
             </div>
         </div>
@@ -72,33 +72,33 @@
                         <tr>
                             <td>Production Summary</td>
                             <td>Overview of production output</td>
-                            <td>Today</td>
+                            <td>{{ production_summary.last_generated|date:"d M Y H:i" }}</td>
                             <td class="text-end">
-                                <button class="btn btn-sm btn-primary">
+                                <a href="{% url 'generate_production_summary' %}" class="btn btn-sm btn-primary">
                                     <i class="bi bi-file-earmark-text"></i> Generate
-                                </button>
+                                </a>
                             </td>
                         </tr>
 
                         <tr>
                             <td>Quality Grading Report</td>
                             <td>Inspection and grading results</td>
-                            <td>Yesterday</td>
+                            <td>{{ quality_grading.last_generated|date:"d M Y H:i" }}</td>
                             <td class="text-end">
-                                <button class="btn btn-sm btn-success">
+                                <a href="{% url 'download_quality_grading' %}" class="btn btn-sm btn-success">
                                     <i class="bi bi-download"></i> Download
-                                </button>
+                                </a>
                             </td>
                         </tr>
 
                         <tr>
                             <td>Order Performance</td>
                             <td>Order status and timelines</td>
-                            <td>2 days ago</td>
+                            <td>{{ order_performance.last_generated|date:"d M Y H:i" }}</td>
                             <td class="text-end">
-                                <button class="btn btn-sm btn-dark">
+                                <a href="{% url 'view_order_performance' %}" class="btn btn-sm btn-dark">
                                     <i class="bi bi-eye"></i> View
-                                </button>
+                                </a>
                             </td>
                         </tr>
                     </tbody>
@@ -132,6 +132,9 @@
 .report-card p {
     font-size: 14px;
     color: #6c757d;
+}
+.table-align-middle .btn {
+    margin-left: 2px;
 }
 </style>
 {% endblock %}

@@ -20,7 +20,7 @@
             <div class="kpi-card gradient-primary">
                 <div>
                     <h6>Products</h6>
-                    <h2>128</h2>
+                    <h2>{{ products_count }}</h2>
                     <span class="badge bg-light text-primary">Active</span>
                 </div>
                 <i class="bi bi-box-seam"></i>
@@ -32,7 +32,7 @@
             <div class="kpi-card gradient-success">
                 <div>
                     <h6>Orders</h6>
-                    <h2>56</h2>
+                    <h2>{{ orders_count }}</h2>
                     <span class="badge bg-light text-success">In Production</span>
                 </div>
                 <i class="bi bi-clipboard-data"></i>
@@ -44,7 +44,7 @@
             <div class="kpi-card gradient-warning">
                 <div>
                     <h6>Grading</h6>
-                    <h2>92%</h2>
+                    <h2>{{ grading_rate }}%</h2>
                     <span class="badge bg-light text-warning">Quality Rate</span>
                 </div>
                 <i class="bi bi-award"></i>
@@ -56,7 +56,7 @@
             <div class="kpi-card gradient-dark">
                 <div>
                     <h6>Reports</h6>
-                    <h2>14</h2>
+                    <h2>{{ reports_generated }}</h2>
                     <span class="badge bg-light text-dark">Generated</span>
                 </div>
                 <i class="bi bi-bar-chart"></i>
@@ -72,7 +72,7 @@
             <div class="action-card">
                 <h5>Product Management</h5>
                 <p>Manage and update product data</p>
-                <a href="#" class="btn btn-primary btn-sm">Open Module</a>
+                <a href="{% url 'product_list' %}" class="btn btn-primary btn-sm">Open Module</a>
             </div>
         </div>
 
@@ -96,7 +96,7 @@
             <div class="action-card">
                 <h5>Reports & Analytics</h5>
                 <p>Visual insights and summaries</p>
-                <a href="#" class="btn btn-dark btn-sm">Open Module</a>
+                <a href="{% url 'reports' %}" class="btn btn-dark btn-sm">Open Module</a>
             </div>
         </div>
 

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'Store',
     'Tags',
-    'likes'
+    'likes',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -90,7 +91,8 @@ DATABASES = {
         'NAME': 'production_grading',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 'Elyse00'
+        'PASSWORD': 'Elyse00',
+        'PORT': '3306',
     }
 }
 
