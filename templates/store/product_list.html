@@ -11,9 +11,7 @@
             <small class="text-muted">Manage and review product inventory</small>
         </div>
         <div>
-            <a href="#" class="btn btn-primary btn-sm">
-                <i class="bi bi-plus-circle"></i> Add Product
-            </a>
+            <a href="{% url 'product_create' %}" class="btn btn-primary">+ Add Product</a>
         </div>
     </div>
 
@@ -35,7 +33,7 @@
                     <tbody>
                         {% for product in products %}
                         <tr>
-                            <td class="text-muted">{{ product.id }}</td>
+                            <td class="text-muted">{{ forloop.counter }}</td>
                             <td class="fw-semibold">{{ product.title }}</td>
                             <td>RWF {{ product.unit_price|floatformat:2 }}</td>
                             <td>
