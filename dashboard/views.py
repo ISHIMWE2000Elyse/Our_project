@@ -181,3 +181,18 @@ def production_orders_view(request):
         'dashboard/production_orders.html',
         {'orders': orders}
     )
+# -------------------- QUALITY_GRADING_VIEW --------------------
+
+@login_required
+def quality_grading_view(request):
+    orders = Order.objects.select_related('customer').all()
+
+    total_orders = orders.count() or 1
+    completed_orders = orders.filter(payment_status='C').count()
+    grading_rate = int((completed_orders / total_orders) * 100)
+
+    context = {
+        'orders': orders,
+        'grading_rate': grading_rate
+    }
+    return render(request, 'dashboard/quality_grading.html', context)
