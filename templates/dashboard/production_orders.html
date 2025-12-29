@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Production Orders{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="mb-4">
+        <h2 class="fw-bold">Production Orders</h2>
+        <p class="text-muted">Track active manufacturing orders</p>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>
+                            {{ order.customer.first_name }}
+                            {{ order.customer.second_name }}
+                        </td>
+                        <td>
+                            <span class="badge bg-info">
+                                {{ order.get_payment_status_display }}
+                            </span>
+                        </td>
+                        <td>{{ order.placed_at|date:"d M Y" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            No production orders found.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -11,7 +11,8 @@ from .views import (
     reports_view, 
     generate_production_summary, 
     download_quality_grading, 
-    view_order_performance
+    view_order_performance,
+    production_orders_view,
 )
 
 urlpatterns = [
@@ -20,4 +21,5 @@ urlpatterns = [
     path('reports/generate/', generate_production_summary, name='generate_production_summary'),
     path('reports/download/', download_quality_grading, name='download_quality_grading'),
     path('reports/view/', view_order_performance, name='view_order_performance'),
+    path('production-orders/', production_orders_view, name='production_orders'),
 ]
