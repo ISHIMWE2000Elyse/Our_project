@@ -1,3 +1,4 @@
+<h1 style="color:red;">SIDEBAR LOADED</h1>
 <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
@@ -5,6 +6,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'dashboard_home' %}">
                     Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'available_products' %}" class="nav-link">
+                    <i class="bi bi-shop"></i>
+                    Shop
                 </a>
             </li>
 

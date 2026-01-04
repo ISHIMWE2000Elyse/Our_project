@@ -175,12 +175,11 @@ def view_order_performance(request):
 # -------------------- PRODUCTION ORDERS --------------------
 @login_required
 def production_orders_view(request):
-    orders = Order.objects.select_related('customer').all()
-    return render(
-        request,
-        'dashboard/production_orders.html',
-        {'orders': orders}
-    )
+    orders = Order.objects.prefetch_related('orderitem_set__product')
+    return render(request, 'dashboard/production_orders.html', {
+        'orders': orders
+    })
+
 # -------------------- QUALITY_GRADING_VIEW --------------------
 
 @login_required
