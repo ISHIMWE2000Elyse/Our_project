@@ -2,40 +2,135 @@
 {% block title %}Shop Products{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid shop-dashboard">
 
-    <div class="mb-4">
-        <h2 class="fw-bold">Available Products</h2>
-        <p class="text-muted">Only products currently in stock</p>
+    <!-- Header -->
+    <div class="mb-5">
+        <h2 class="fw-bold shop-title">Available Products</h2>
+        <p class="shop-subtitle">Only products currently in stock</p>
     </div>
 
     <div class="row g-4">
         {% for product in products %}
         <div class="col-md-4 col-lg-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h5 class="fw-semibold">{{ product.title }}</h5>
-                    <p class="text-muted small">
+            <div class="product-card h-100">
+                <div class="card-body d-flex flex-column">
+
+                    <h5 class="fw-semibold product-title">
+                        {{ product.title }}
+                    </h5>
+
+                    <p class="product-desc">
                         {{ product.description|truncatewords:15 }}
                     </p>
 
-                    <p class="fw-bold">RWF {{ product.price }}</p>
+                    <p class="product-price">
+                        RWF {{ product.price }}
+                    </p>
 
-                    <span class="badge bg-success mb-2">
+                    <span class="product-badge mb-3">
                         In Stock: {{ product.inventory }}
                     </span>
 
                     <a href="{% url 'order_quantity' product.id %}"
-                       class="btn btn-primary btn-sm w-100 mt-2">
-                            Order Now
+                       class="btn product-btn mt-auto">
+                        Order Now
                     </a>
+
                 </div>
             </div>
         </div>
         {% empty %}
-        <p>No products available.</p>
+        <p class="text-muted">No products available.</p>
         {% endfor %}
     </div>
 
 </div>
+
+<style>
+/* ===== ROOT ===== */
+.shop-dashboard {
+    padding: 32px;
+    min-height: 100vh;
+    background: radial-gradient(circle at top left, #2c3163, #0b0f2a);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #e5e7eb;
+}
+
+/* ===== HEADER ===== */
+.shop-title {
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+.shop-subtitle {
+    color: #9ca3af;
+}
+
+/* ===== PRODUCT CARD ===== */
+.product-card {
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.02)
+    );
+    backdrop-filter: blur(16px);
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.08),
+        0 20px 45px rgba(0,0,0,0.45);
+    transition: all 0.4s ease;
+}
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.1),
+        0 30px 60px rgba(0,0,0,0.6);
+}
+
+/* ===== TEXT ===== */
+.product-title {
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+.product-desc {
+    font-size: 13px;
+    color: #9ca3af;
+    line-height: 1.6;
+}
+.product-price {
+    font-weight: 800;
+    font-size: 18px;
+    color: #ffffff;
+    margin: 12px 0;
+}
+
+/* ===== BADGE ===== */
+.product-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(16,185,129,0.2);
+    color: #6ee7b7;
+    width: fit-content;
+}
+
+/* ===== BUTTON ===== */
+.product-btn {
+    border-radius: 999px;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #ffffff;
+    border: none;
+    transition: all 0.3s ease;
+}
+.product-btn:hover {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: #ffffff;
+}
+</style>
 {% endblock %}

@@ -86,6 +86,7 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('', include('Store.urls')),
     path('playground/', include('playground.urls')),
+    path('accounts/', include('accounts.urls')),
 
 ]
 

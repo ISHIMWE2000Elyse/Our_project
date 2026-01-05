@@ -2,26 +2,26 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid elite-dashboard">
 
     <!-- Header -->
-    <div class="mb-4">
-        <h2 class="fw-bold">Dashboard</h2>
-        <p class="text-muted mb-0">
+    <div class="mb-5">
+        <h2 class="fw-bold elite-title">Dashboard</h2>
+        <p class="elite-subtitle">
             Real-time overview of production performance
         </p>
     </div>
 
     <!-- KPI CARDS -->
-    <div class="row g-4 mb-4">
+    <div class="row g-4 mb-5">
 
         <!-- Products -->
         <div class="col-xl-3 col-md-6">
-            <div class="kpi-card gradient-primary">
+            <div class="elite-kpi kpi-blue">
                 <div>
                     <h6>Products</h6>
                     <h2>{{ products_count }}</h2>
-                    <span class="badge bg-light text-primary">Active</span>
+                    <span class="badge elite-badge-blue">Active</span>
                 </div>
                 <i class="bi bi-box-seam"></i>
             </div>
@@ -29,11 +29,11 @@
 
         <!-- Orders -->
         <div class="col-xl-3 col-md-6">
-            <div class="kpi-card gradient-success">
+            <div class="elite-kpi kpi-emerald">
                 <div>
                     <h6>Orders</h6>
                     <h2>{{ orders_count }}</h2>
-                    <span class="badge bg-light text-success">In Production</span>
+                    <span class="badge elite-badge-emerald">In Production</span>
                 </div>
                 <i class="bi bi-clipboard-data"></i>
             </div>
@@ -41,11 +41,11 @@
 
         <!-- Grading -->
         <div class="col-xl-3 col-md-6">
-            <div class="kpi-card gradient-warning">
+            <div class="elite-kpi kpi-amber">
                 <div>
                     <h6>Grading</h6>
                     <h2>{{ grading_rate }}%</h2>
-                    <span class="badge bg-light text-warning">Quality Rate</span>
+                    <span class="badge elite-badge-amber">Quality Rate</span>
                 </div>
                 <i class="bi bi-award"></i>
             </div>
@@ -53,11 +53,11 @@
 
         <!-- Reports -->
         <div class="col-xl-3 col-md-6">
-            <div class="kpi-card gradient-dark">
+            <div class="elite-kpi kpi-slate">
                 <div>
                     <h6>Reports</h6>
                     <h2>{{ reports_generated }}</h2>
-                    <span class="badge bg-light text-dark">Generated</span>
+                    <span class="badge elite-badge-slate">Generated</span>
                 </div>
                 <i class="bi bi-bar-chart"></i>
             </div>
@@ -69,7 +69,7 @@
     <div class="row g-4">
 
         <div class="col-md-6 col-xl-3">
-            <div class="action-card">
+            <div class="elite-action">
                 <h5>Product Management</h5>
                 <p>Manage and update product data</p>
                 <a href="{% url 'product_list' %}" class="btn btn-primary btn-sm">Open Module</a>
@@ -77,24 +77,23 @@
         </div>
 
         <div class="col-md-6 col-xl-3">
-            <div class="action-card">
+            <div class="elite-action">
                 <h5>Production Orders</h5>
                 <p>Track active manufacturing orders</p>
                 <a href="{% url 'production_orders' %}" class="btn btn-success btn-sm">Open Module</a>
-
             </div>
         </div>
 
         <div class="col-md-6 col-xl-3">
-            <div class="action-card">
+            <div class="elite-action">
                 <h5>Quality Grading</h5>
                 <p>Monitor grading and inspections</p>
-                <a href="{% url 'quality_grading' %}" class="btn btn-success btn-sm">Open Module</a>
+                <a href="{% url 'quality_grading' %}" class="btn btn-warning btn-sm">Open Module</a>
             </div>
         </div>
 
         <div class="col-md-6 col-xl-3">
-            <div class="action-card">
+            <div class="elite-action">
                 <h5>Reports & Analytics</h5>
                 <p>Visual insights and summaries</p>
                 <a href="{% url 'reports' %}" class="btn btn-dark btn-sm">Open Module</a>
@@ -106,59 +105,117 @@
 </div>
 
 <style>
-/* KPI CARDS */
-.kpi-card {
-    color: #fff;
-    border-radius: 16px;
-    padding: 25px;
+/* ===== ROOT DARK GLASS THEME ===== */
+.elite-dashboard {
+    padding: 32px;
+    min-height: 100vh;
+    background: radial-gradient(circle at top left, #2c3163, #0b0f2a);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #e5e7eb;
+}
+
+/* ===== HEADER ===== */
+.elite-title {
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+.elite-subtitle {
+    color: #9ca3af;
+    max-width: 520px;
+}
+
+/* ===== KPI CARDS ===== */
+.elite-kpi {
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.02)
+    );
+    backdrop-filter: blur(16px);
+    border-radius: 22px;
+    padding: 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.08),
+        0 20px 45px rgba(0,0,0,0.45);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-.kpi-card:hover {
-    transform: translateY(-6px);
-}
-.kpi-card h2 {
-    font-weight: 700;
-}
-.kpi-card i {
-    font-size: 42px;
-    opacity: 0.85;
+.elite-kpi:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.1),
+        0 30px 60px rgba(0,0,0,0.6);
 }
 
-/* GRADIENTS */
-.gradient-primary {
-    background: linear-gradient(135deg, #0d6efd, #4dabf7);
+.elite-kpi h6 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    color: #9ca3af;
 }
-.gradient-success {
-    background: linear-gradient(135deg, #198754, #51cf66);
+.elite-kpi h2 {
+    font-weight: 800;
+    color: #ffffff;
+    margin: 6px 0 10px;
 }
-.gradient-warning {
-    background: linear-gradient(135deg, #ffc107, #ffd43b);
-}
-.gradient-dark {
-    background: linear-gradient(135deg, #212529, #495057);
+.elite-kpi i {
+    font-size: 48px;
+    opacity: 0.25;
+    color: #ffffff;
 }
 
-/* ACTION CARDS */
-.action-card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 25px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    transition: 0.3s;
+/* ===== KPI COLOR ACCENTS ===== */
+.kpi-blue    { border-left: 4px solid #3b82f6; }
+.kpi-emerald { border-left: 4px solid #10b981; }
+.kpi-amber   { border-left: 4px solid #f59e0b; }
+.kpi-slate   { border-left: 4px solid #8b5cf6; }
+
+/* ===== BADGES ===== */
+.elite-badge-blue    { background: rgba(59,130,246,0.2); color: #93c5fd; }
+.elite-badge-emerald { background: rgba(16,185,129,0.2); color: #6ee7b7; }
+.elite-badge-amber   { background: rgba(245,158,11,0.2); color: #fde68a; }
+.elite-badge-slate   { background: rgba(139,92,246,0.2); color: #c4b5fd; }
+
+/* ===== ACTION CARDS ===== */
+.elite-action {
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.06),
+        rgba(255,255,255,0.02)
+    );
+    backdrop-filter: blur(14px);
+    border-radius: 22px;
+    padding: 28px;
+    height: 100%;
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.06),
+        0 18px 40px rgba(0,0,0,0.45);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-.action-card:hover {
-    transform: translateY(-5px);
+.elite-action:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.08),
+        0 26px 55px rgba(0,0,0,0.6);
 }
-.action-card h5 {
+
+.elite-action h5 {
     font-weight: 600;
+    color: #ffffff;
 }
-.action-card p {
-    color: #6c757d;
+.elite-action p {
+    color: #9ca3af;
     font-size: 14px;
+    margin-bottom: 18px;
+}
+
+/* ===== BUTTON POLISH ===== */
+.elite-action .btn {
+    border-radius: 999px;
+    font-weight: 600;
+    padding: 6px 16px;
 }
 </style>
 {% endblock %}

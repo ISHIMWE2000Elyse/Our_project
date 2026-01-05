@@ -8,19 +8,19 @@
     <!-- Page Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h2 class="fw-bold mb-0">Reports & Analytics</h2>
+            <h2 class="fw-bold mb-1">Reports & Analytics</h2>
             <small class="text-muted">
                 System-generated reports for production and quality monitoring
             </small>
         </div>
-        <span class="badge bg-secondary">Staff / Admin Access</span>
+        <span class="badge bg-primary fw-semibold">Staff / Admin Access</span>
     </div>
 
     <!-- Summary Cards -->
     <div class="row g-4 mb-4">
 
         <div class="col-md-3">
-            <div class="report-card">
+            <div class="report-card border-start border-4 border-primary">
                 <h6>Total Products</h6>
                 <h3>{{ products_count }}</h3>
                 <p>Registered items</p>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="col-md-3">
-            <div class="report-card">
+            <div class="report-card border-start border-4 border-success">
                 <h6>Total Orders</h6>
                 <h3>{{ orders_count }}</h3>
                 <p>Production orders</p>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="col-md-3">
-            <div class="report-card">
+            <div class="report-card border-start border-4 border-warning">
                 <h6>Quality Rate</h6>
                 <h3>{{ grading_rate }}%</h3>
                 <p>Approved grading</p>
@@ -44,7 +44,7 @@
         </div>
 
         <div class="col-md-3">
-            <div class="report-card">
+            <div class="report-card border-start border-4 border-info">
                 <h6>Reports Generated</h6>
                 <h3>{{ reports_generated }}</h3>
                 <p>This month</p>
@@ -59,7 +59,7 @@
             <h5 class="fw-semibold mb-3">Available Reports</h5>
 
             <div class="table-responsive">
-                <table class="table align-middle">
+                <table class="table table-hover align-middle">
                     <thead class="table-light">
                         <tr>
                             <th>Report Name</th>
@@ -111,30 +111,50 @@
 </div>
 
 <style>
+/* Card Styling */
 .report-card {
     background: #fff;
     border-radius: 14px;
-    padding: 22px;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-    transition: 0.3s;
+    padding: 25px 22px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
 }
 .report-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.12);
 }
 .report-card h6 {
     text-transform: uppercase;
     font-size: 13px;
     color: #6c757d;
+    letter-spacing: 0.5px;
 }
 .report-card h3 {
     font-weight: 700;
+    margin-top: 8px;
+    margin-bottom: 4px;
 }
 .report-card p {
     font-size: 14px;
     color: #6c757d;
 }
-.table-align-middle .btn {
+
+/* Table & Buttons */
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+}
+.table .btn {
     margin-left: 2px;
+    transition: 0.2s;
+}
+.table .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Responsive Badge */
+.badge {
+    padding: 0.55em 0.85em;
+    font-size: 0.85rem;
 }
 </style>
 {% endblock %}

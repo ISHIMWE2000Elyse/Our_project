@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}Production Grading{% endblock %}</title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -13,14 +13,16 @@
         body {
             background-color: #f4f6f9;
             font-size: 15px;
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        /* Sidebar */
+        /* SIDEBAR */
         .sidebar {
             width: 260px;
             background: linear-gradient(180deg, #212529, #343a40);
             min-height: 100vh;
             box-shadow: 4px 0 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
         }
 
         .sidebar h4 {
@@ -37,6 +39,7 @@
 
         .sidebar .nav-link i {
             margin-right: 10px;
+            font-size: 1.1rem;
         }
 
         .sidebar .nav-link:hover {
@@ -50,13 +53,30 @@
             font-weight: 500;
         }
 
-        /* Main Content */
+        .sidebar hr {
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        /* USER BOX */
+        .user-box {
+            font-size: 14px;
+        }
+
+        .user-box .btn {
+            transition: 0.2s;
+        }
+
+        .user-box .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* MAIN CONTENT */
         .main-content {
             padding: 30px;
             width: 100%;
         }
 
-        /* Topbar */
+        /* TOPBAR */
         .topbar {
             background: #fff;
             padding: 14px 24px;
@@ -65,12 +85,28 @@
             margin-bottom: 24px;
         }
 
-        .user-box {
-            font-size: 14px;
+        .topbar strong {
+            font-size: 1.1rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .sidebar {
+                position: fixed;
+                left: -300px;
+                top: 0;
+                z-index: 999;
+                transition: left 0.3s ease;
+            }
+            .sidebar.show {
+                left: 0;
+            }
+            .main-content {
+                padding: 20px;
+            }
         }
     </style>
 </head>
-
 <body>
 
 <div class="d-flex">
@@ -122,11 +158,10 @@
 
         <hr class="text-secondary my-4">
 
-        <!-- User -->
+        <!-- USER INFO -->
         <div class="user-box">
             <div class="fw-semibold">{{ user.username }}</div>
             <div class="small text-muted">{{ user.email }}</div>
-
             <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-light mt-3 w-100">
                 <i class="bi bi-box-arrow-right"></i> Logout
             </a>
@@ -137,7 +172,7 @@
     <!-- MAIN CONTENT -->
     <main class="main-content">
 
-        <!-- TOP BAR -->
+        <!-- TOPBAR -->
         <div class="topbar d-flex justify-content-between align-items-center">
             <div>
                 <strong>{% block page_title %}Dashboard{% endblock %}</strong>

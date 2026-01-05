@@ -1,18 +1,74 @@
-<nav class="navbar navbar-dark bg-dark sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Production Grading</a>
-        <a href="{% url 'available_products' %}" class="nav-link">
-    <i class="bi bi-shop"></i> Shop
-</a>
+<nav class="navbar sticky-top elite-navbar">
+    <div class="container-fluid elite-navbar-inner">
 
+        <a class="navbar-brand elite-brand" href="#">
+            Production Grading
+        </a>
 
-        <div class="d-flex">
-            <span class="text-white me-3">
+        <div class="d-flex align-items-center">
+            <span class="elite-username me-3">
                 {{ request.user.username }}
             </span>
-            <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">
+            <a href="{% url 'logout' %}" class="btn elite-logout-btn btn-sm">
                 Logout
             </a>
         </div>
+
     </div>
 </nav>
+
+<style>
+/* ===== NAVBAR ROOT ===== */
+.elite-navbar {
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.02)
+    );
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+    padding: 10px 0;
+    z-index: 1050;
+}
+
+/* ===== INNER ===== */
+.elite-navbar-inner {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* ===== BRAND ===== */
+.elite-brand {
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: #ffffff;
+    font-size: 18px;
+}
+.elite-brand:hover {
+    color: #e0e7ff;
+}
+
+/* ===== USERNAME ===== */
+.elite-username {
+    color: #c7d2fe;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* ===== LOGOUT BUTTON ===== */
+.elite-logout-btn {
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-weight: 600;
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+}
+.elite-logout-btn:hover {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border-color: transparent;
+    color: #ffffff;
+}
+</style>

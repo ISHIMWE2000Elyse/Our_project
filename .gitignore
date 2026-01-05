@@ -3,4 +3,6 @@ __pycache__/
 *.pyc
 
 # Ignore local database
-db.sqlite3
+/db.sqlite3
+env/
+/.env
