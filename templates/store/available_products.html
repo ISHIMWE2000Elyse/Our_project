@@ -28,9 +28,11 @@
                         RWF {{ product.price }}
                     </p>
 
+                    {% if user.is_staff or user.is_superuser %}
                     <span class="product-badge mb-3">
                         In Stock: {{ product.inventory }}
                     </span>
+                    {% endif %}
 
                     <a href="{% url 'order_quantity' product.id %}"
                        class="btn product-btn mt-auto">

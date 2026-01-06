@@ -12,7 +12,9 @@
 
         <p class="fw-semibold">
             Price: RWF {{ product.price }} <br>
+            {% if user.is_staff or user.is_superuser %}
             Available: {{ product.inventory }}
+            {% endif %}
         </p>
 
         <form method="post">

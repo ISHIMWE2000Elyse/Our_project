@@ -3,7 +3,9 @@
 
 <h3>{{ product.title }}</h3>
 <p><strong>Price:</strong> {{ product.price }}</p>
-<p><strong>Inventory:</strong> {{ product.inventory }}</p>
+{% if user.is_staff or user.is_superuser %}
+<p><strong>Inventory:</strong> {{ product.inventory }}</p> 
+{% endif%}
 <p><strong>Description:</strong> {{ product.description }}</p>
 
 <a href="{% url 'product_list' %}" class="btn btn-secondary">Back</a>

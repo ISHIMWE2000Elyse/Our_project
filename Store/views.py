@@ -23,6 +23,7 @@ def product_edit(request, pk):
 
     if request.method == 'POST':
         product.title = request.POST.get('title')
+        product.description = request.POST.get('description')
         product.price = request.POST.get('price')
         product.inventory = request.POST.get('inventory')
         product.save()
