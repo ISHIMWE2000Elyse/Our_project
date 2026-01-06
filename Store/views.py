@@ -71,7 +71,14 @@ def place_order(request, product_id):
 
     # 🔑 Match Customer by email (NOT user)
     try:
-        customer = Customer.objects.get(email=request.user.email)
+        customer, created = Customer.objects.get_or_create(
+    email=request.user.email,
+    defaults={
+        'first_name': request.user.first_name or 'Customer',
+        'second_name': request.user.last_name or '',
+        'phone': 'N/A'
+    }
+)
     except Customer.DoesNotExist:
         # Optional: redirect or show message
         return redirect('available_products')
@@ -106,8 +113,15 @@ def order_quantity(request, product_id):
         if quantity <= 0 or quantity > product.inventory:
             return redirect('order_quantity', product_id=product.id)
 
-        # Match customer by email
-        customer = Customer.objects.get(email=request.user.email)
+        # ✅ GET OR CREATE CUSTOMER
+        customer, created = Customer.objects.get_or_create(
+            email=request.user.email,
+            defaults={
+                'first_name': request.user.first_name or 'Customer',
+                'second_name': request.user.last_name or '',
+                'phone': 'N/A'
+            }
+        )
 
         # Create Order
         order = Order.objects.create(
@@ -133,6 +147,7 @@ def order_quantity(request, product_id):
         'product': product
     })
 
+
 @login_required
 def shop_dashboard(request):
     # Example: count of shop items
@@ -143,3 +158,30 @@ def shop_dashboard(request):
         'shop_items_count': shop_items_count,
     }
     return render(request, 'store/dashboard.html', context)
+
+@login_required
+def production_orders(request):
+
+    # Staff or Admin → see ALL orders
+    if request.user.is_staff or request.user.is_superuser:
+        orders = Order.objects.select_related(
+            'customer'
+        ).prefetch_related(
+            'orderitem_set__product'
+        ).order_by('-placed_at')
+
+    # Normal customer → see ONLY their orders
+    else:
+        try:
+            customer = Customer.objects.get(email=request.user.email)
+            orders = Order.objects.filter(
+                customer=customer
+            ).prefetch_related(
+                'orderitem_set__product'
+            ).order_by('-placed_at')
+        except Customer.DoesNotExist:
+            orders = Order.objects.none()
+
+    return render(request, 'store/production_orders.html', {
+        'orders': orders
+    })

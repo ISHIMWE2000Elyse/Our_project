@@ -10,9 +10,11 @@
             <h2 class="fw-bold mb-0">Products</h2>
             <small class="text-muted">Manage and review product inventory</small>
         </div>
+        {% if user.is_staff or user.is_superuser %}
         <div>
             <a href="{% url 'product_create' %}" class="btn btn-primary">+ Add Product</a>
         </div>
+        {% endif %}
     </div>
 
     <!-- Products Table -->
