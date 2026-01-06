@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Promotion (models.Model):
@@ -31,12 +32,24 @@ class Customer(models.Model):
         (MEMBERSHIP_SILVER,'Silver'),
         (MEMBERSHIP_GOLD,'Gold'),
     ]
+
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+
     first_name = models.CharField(max_length=255)
     second_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=255)
     birth_date = models.DateField(null=True)
-    membership = models.CharField(max_length=1, choices=MEMBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE)
+    membership = models.CharField(
+        max_length=1,
+        choices=MEMBERSHIP_CHOICES,
+        default=MEMBERSHIP_BRONZE
+    )
 
     class Meta:
         db_table = 'store_customers'
@@ -44,6 +57,9 @@ class Customer(models.Model):
             models.Index(fields=['second_name', 'first_name'])
         ]
 
+    def __str__(self):
+        return f"{self.first_name} {self.second_name}"
+    
 class Order(models.Model):
     PAYMENT_STATUS_PENDING = 'P'
     PAYMENT_STATUS_COMPLETE = 'C'

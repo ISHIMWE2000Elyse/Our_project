@@ -132,3 +132,14 @@ def order_quantity(request, product_id):
     return render(request, 'store/order_quantity.html', {
         'product': product
     })
+
+@login_required
+def shop_dashboard(request):
+    # Example: count of shop items
+    from .models import Product  # or ShopItem if you have
+    shop_items_count = Product.objects.count()
+    
+    context = {
+        'shop_items_count': shop_items_count,
+    }
+    return render(request, 'store/dashboard.html', context)

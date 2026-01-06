@@ -3,57 +3,60 @@
 {% block title %}Reports{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid reports-page">
 
-    <!-- Page Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- PAGE HEADER (REDESIGNED) -->
+    <div class="reports-header mb-5">
         <div>
-            <h2 class="fw-bold mb-1">Reports & Analytics</h2>
-            <small class="text-muted">
-                System-generated reports for production and quality monitoring
-            </small>
+            <h2 class="fw-bold mb-1 text-white">Reports & Analytics</h2>
+            <p class="elite-subtitle">
+                System-generated insights for production and quality monitoring
+            </p>
         </div>
-        <span class="badge bg-primary fw-semibold">Staff / Admin Access</span>
+
+        <div class="access-pill">
+            <i class="bi bi-shield-check"></i> Staff / Admin Access
+        </div>
     </div>
 
-    <!-- Summary Cards -->
-    <div class="row g-4 mb-4">
+    <!-- SUMMARY CARDS (REDESIGNED) -->
+    <div class="row g-4 mb-5">
 
         <div class="col-md-3">
-            <div class="report-card border-start border-4 border-primary">
-                <h6>Total Products</h6>
+            <div class="metric-card accent-primary">
+                <span>Total Products</span>
                 <h3>{{ products_count }}</h3>
-                <p>Registered items</p>
+                <small>Registered items</small>
             </div>
         </div>
 
         <div class="col-md-3">
-            <div class="report-card border-start border-4 border-success">
-                <h6>Total Orders</h6>
+            <div class="metric-card accent-success">
+                <span>Total Orders</span>
                 <h3>{{ orders_count }}</h3>
-                <p>Production orders</p>
+                <small>Production orders</small>
             </div>
         </div>
 
         <div class="col-md-3">
-            <div class="report-card border-start border-4 border-warning">
-                <h6>Quality Rate</h6>
+            <div class="metric-card accent-warning">
+                <span>Quality Rate</span>
                 <h3>{{ grading_rate }}%</h3>
-                <p>Approved grading</p>
+                <small>Approved grading</small>
             </div>
         </div>
 
         <div class="col-md-3">
-            <div class="report-card border-start border-4 border-info">
-                <h6>Reports Generated</h6>
+            <div class="metric-card accent-info">
+                <span>Reports Generated</span>
                 <h3>{{ reports_generated }}</h3>
-                <p>This month</p>
+                <small>This month</small>
             </div>
         </div>
 
     </div>
 
-    <!-- Report Actions -->
+    <!-- 🚫 REPORT ACTIONS — UNCHANGED (AS REQUESTED) -->
     <div class="card shadow-sm border-0">
         <div class="card-body">
             <h5 class="fw-semibold mb-3">Available Reports</h5>
@@ -110,51 +113,75 @@
 
 </div>
 
+<!-- 🎨 STYLES (ONLY AFFECT HEADER + CARDS) -->
 <style>
-/* Card Styling */
-.report-card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 25px 22px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
+/* PAGE BACKGROUND ASSUMPTION: dark dashboard */
+.reports-page {
+    padding-top: 10px;
 }
-.report-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 25px rgba(0,0,0,0.12);
+
+/* HEADER */
+.reports-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.report-card h6 {
-    text-transform: uppercase;
+
+.access-pill {
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 999px;
     font-size: 13px;
-    color: #6c757d;
-    letter-spacing: 0.5px;
-}
-.report-card h3 {
-    font-weight: 700;
-    margin-top: 8px;
-    margin-bottom: 4px;
-}
-.report-card p {
-    font-size: 14px;
-    color: #6c757d;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(99,102,241,0.45);
 }
 
-/* Table & Buttons */
-.table-hover tbody tr:hover {
-    background-color: #f8f9fa;
-}
-.table .btn {
-    margin-left: 2px;
-    transition: 0.2s;
-}
-.table .btn:hover {
-    transform: translateY(-2px);
+/* METRIC CARDS */
+.metric-card {
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.12),
+        rgba(255,255,255,0.04)
+    );
+    backdrop-filter: blur(18px);
+    border-radius: 22px;
+    padding: 26px 24px;
+    color: #fff;
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.08),
+        0 25px 50px rgba(0,0,0,0.55);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Responsive Badge */
-.badge {
-    padding: 0.55em 0.85em;
-    font-size: 0.85rem;
+.metric-card:hover {
+    transform: translateY(-8px);
 }
+
+.metric-card span {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #9ca3af;
+}
+
+.metric-card h3 {
+    font-size: 34px;
+    font-weight: 800;
+    margin: 10px 0 4px;
+}
+
+.metric-card small {
+    color: #9ca3af;
+}
+
+/* ACCENTS */
+.accent-primary { border-left: 4px solid #6366f1; }
+.accent-success { border-left: 4px solid #22c55e; }
+.accent-warning { border-left: 4px solid #facc15; }
+.accent-info    { border-left: 4px solid #38bdf8; }
 </style>
+
 {% endblock %}

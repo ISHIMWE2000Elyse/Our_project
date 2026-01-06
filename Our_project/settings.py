@@ -91,14 +91,15 @@ WSGI_APPLICATION = 'Our_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'production_grading',
-        'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': 'Elyse00',
-        'PORT': '3306',
+        'ENGINE': env('DB_ENGINE', default='django.db.backends.mysql'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST', default='localhost'),
+        'PORT': env('DB_PORT', default='3306'),
     }
 }
+
 
 
 # Password validation
